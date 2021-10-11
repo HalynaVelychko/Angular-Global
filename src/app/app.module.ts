@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { CoursesModule } from './courses/courses.module';
-import { FooterModule } from './footer/footer.module';
-import { HeaderModule } from './header/header.module';
+import { LoginModule } from './features/auth/login/login.module';
+import { CoursesModule } from './features/courses/courses.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -13,8 +13,8 @@ import { HeaderModule } from './header/header.module';
   imports: [
     BrowserModule,
     CoursesModule,
-    FooterModule,
-    HeaderModule,
+    LoginModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
