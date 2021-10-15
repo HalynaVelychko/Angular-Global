@@ -1,0 +1,12 @@
+.breadcrumps {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    height: 64px;
+  }
+
+  &__text {
+    margin: 0;
+    font-weight: 600;
+  }
+}
