@@ -1,1 +1,7 @@
-<p>button works!</p>
+<button
+[ngClass]="defaultClass"
+>
+  <img *ngIf="iconSrc" [attr.src]="iconSrc" class="button__icon"/>
+  <ng-content></ng-content>
+  {{ buttonText }}
+</button>
