@@ -1,1 +1,21 @@
-<p>courses-serach works!</p>
+<form action="" class="d-flex align-items-center">
+  <div class="input-group">
+    <img>
+    <input
+      [(ngModel)]="inputData"
+      [ngModelOptions]="{standalone: true}"
+      type="text"
+      class="form-control form__actions"
+      placeholder="Text to search"
+      aria-label="Username">
+  </div>
+  <div class="ps-2">
+    <!-- <button type="submit" (click)="onSubmit()">Submit</button> -->
+    <app-button
+      (click)="onSubmit()"
+      [buttonType]="buttonType"
+      [buttonSize]="buttonSize"
+      buttonText="Submit"
+    ></app-button>
+  </div>
+</form>

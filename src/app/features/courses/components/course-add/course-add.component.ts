@@ -1,3 +1,5 @@
+import { ButtonSize } from './../../../../shared/components/button/enums/button-size.enum';
+import { ButtonType } from './../../../../shared/components/button/enums/button-type.enum';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,9 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./course-add.component.scss'],
 })
 export class CourseAddComponent  {
+  buttonType = ButtonType.BLUE;
+  buttonSize = ButtonSize.LARGE;
 
   constructor() { }
-
-
 
 }
