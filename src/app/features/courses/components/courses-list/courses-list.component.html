@@ -2,7 +2,9 @@
   <div class="container">
     <div class="row d-flex align-items-center justify-content-between">
       <div class="col-md-4">
-        <app-courses-serach></app-courses-serach>
+        <app-courses-serach
+          (searchData)="onSearchData($event)"
+        ></app-courses-serach>
       </div>
       <div class="col-md-2">
         <app-course-add></app-course-add>

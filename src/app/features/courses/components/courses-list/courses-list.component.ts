@@ -13,5 +13,7 @@ export class CoursesListComponent  {
 
   constructor() { }
 
-
+  onSearchData(data: string): void {
+    console.log(`This ${data} was found!!`)
+  }
 }
