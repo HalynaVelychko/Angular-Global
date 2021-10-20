@@ -1,6 +1,5 @@
-import { SharedModule } from './../shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { HeaderComponent, FooterComponent } from './components';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 
@@ -12,7 +11,6 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
     BreadcrumbsComponent,
   ],
   imports: [
-    CommonModule,
     SharedModule,
   ],
   exports: [

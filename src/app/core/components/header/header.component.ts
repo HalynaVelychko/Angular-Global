@@ -1,6 +1,6 @@
-import { ButtonType } from './../../../shared/components/button/enums/button-type.enum';
 import { Component } from '@angular/core';
-import { ButtonSize } from 'src/app/shared';
+
+import { ButtonType, ButtonSize } from '@shared';
 
 @Component({
   selector: 'app-header',

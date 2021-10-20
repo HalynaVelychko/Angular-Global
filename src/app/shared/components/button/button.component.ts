@@ -1,6 +1,7 @@
-import { ButtonSize } from './enums/button-size.enum';
-import { ButtonType } from './enums/button-type.enum';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+
+//Enums
+import { ButtonSize, ButtonType } from '@shared';
 
 @Component({
   selector: 'app-button',
@@ -10,9 +11,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 
 export class ButtonComponent  {
-  @Input() buttonType: ButtonType.BLUE | ButtonType.GREEN | ButtonType.TRANSPARENT = ButtonType.TRANSPARENT;
+  @Input() buttonType!: ButtonType;
 
-  @Input() buttonSize = ButtonSize.SMALL;
+  @Input() buttonSize!: ButtonSize;
 
   @Input() buttonText!: string;
 

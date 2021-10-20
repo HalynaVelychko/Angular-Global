@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from './components';
+import { FormsModule } from '@angular/forms';
 
+//Components
+import { ButtonComponent } from './index';
 
 
 @NgModule({
@@ -10,9 +12,12 @@ import { ButtonComponent } from './components';
   ],
   imports: [
     CommonModule,
+    FormsModule,
   ],
   exports: [
     ButtonComponent,
+    CommonModule,
+    FormsModule,
   ],
 })
 export class SharedModule { }

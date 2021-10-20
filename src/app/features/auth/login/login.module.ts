@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '@shared';
 import { LoginComponent } from './components';
 
 
@@ -9,7 +9,7 @@ import { LoginComponent } from './components';
     LoginComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
   ],
   exports: [
     LoginComponent,

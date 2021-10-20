@@ -1,6 +1,6 @@
-import { ButtonSize } from './../../../../shared/components/button/enums/button-size.enum';
-import { ButtonType } from './../../../../shared/components/button/enums/button-type.enum';
 import { Component } from '@angular/core';
+
+import { ButtonSize, ButtonType } from '@shared';
 
 @Component({
   selector: 'app-course-add',
