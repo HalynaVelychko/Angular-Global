@@ -1,0 +1,64 @@
+$button-medium-height: 24px;
+$button-large-height: 36px;
+$button-radius: 3px;
+$button-bg-color-blue:  #009ECC;
+$button-bg-color-green:  #67A300;
+$button-bg-color-transparent: transparent;
+$text-color-primary: #FFFFFF;
+
+@mixin btn($bgColor, $textColor, $border, $border-radius) {
+  background-color: $bgColor;
+  color: $textColor;
+
+  @if($border != 'null') {
+    border: $border;
+    border-radius: $border-radius;
+  }
+}
+
+.button {
+  font-weight: 600;
+
+  &--button-default {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+
+  &--blue {
+    @include btn($button-bg-color-blue, $text-color-primary, 1px solid transparent, $button-radius)
+  }
+
+  &--green {
+    @include btn($button-bg-color-green, $text-color-primary, 1px solid transparent, $button-radius)
+  }
+
+  &--transparent {
+    @include btn($button-bg-color-transparent, $text-color-primary, none, 0)
+  }
+
+  &--large {
+    padding: 4px 17px;
+    width: 100%;
+    max-height: $button-large-height;
+  }
+
+  &--medium {
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: 400;
+    width: 100%;
+    max-height: 24px;
+  }
+
+  &--small {
+    max-height: 24px;
+    font-weight: 400;
+    padding: 0;
+    width: 100%;
+  }
+
+  &__icon {
+    margin-right: 0.25rem;
+  }
+}

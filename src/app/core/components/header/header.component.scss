@@ -1,0 +1,16 @@
+.header {
+  &__wrapper {
+    background: #303240;
+    height: fit-content;
+  }
+
+  &__text {
+    font-size: 23px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin: 0;
+    padding-left: 0.5rem;
+    font-weight: 700;
+  }
+}
+
