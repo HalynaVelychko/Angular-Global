@@ -12,7 +12,8 @@ import { courseData } from '../../../../mockData/data';
   styleUrls: ['./courses-list.component.scss'],
 })
 export class CoursesListComponent  {
-  courses$ = new BehaviorSubject<CourseModel[]>(courseData);
+  courses$$ = new BehaviorSubject<CourseModel[]>(courseData);
+  courses$ = this.courses$$.asObservable();
 
   constructor() { }
 

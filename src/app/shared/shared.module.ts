@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 //Components
 import { ButtonComponent } from './index';
+import { BorderDirective } from './directives/border.directive';
 
 
 @NgModule({
   declarations: [
     ButtonComponent,
+    BorderDirective,
   ],
   imports: [
     CommonModule,
@@ -18,6 +20,7 @@ import { ButtonComponent } from './index';
     ButtonComponent,
     CommonModule,
     FormsModule,
+    BorderDirective,
   ],
 })
 export class SharedModule { }
