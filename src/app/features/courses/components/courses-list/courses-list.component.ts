@@ -2,7 +2,7 @@ import { FilterPipe } from './../../../../shared/pipes/filter.pipe';
 import { Component } from '@angular/core';
 
 //rxjs
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 //Models
 import { CourseModel } from './../../models/course.model';
@@ -19,9 +19,9 @@ export class CoursesListComponent  {
 
   constructor(private filter: FilterPipe) { }
 
-  onSearchData(searchQuery: string): Observable<CourseModel[]> | CourseModel[] {
+  onSearchData(searchQuery: string): void {
     const query = searchQuery.trim();
-    return this.filter.transform(this.courses$, query)
+    this.filter.transform(this.courses$, query);
   }
 
   trackById(_index: number, course: CourseModel): number {
