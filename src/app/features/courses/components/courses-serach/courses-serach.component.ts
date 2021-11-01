@@ -18,7 +18,6 @@ export class CoursesSerachComponent  {
   constructor() { }
 
   onSubmit(): void {
-    console.log(this.inputData);
     this.searchData.emit(this.inputData)
   }
 }

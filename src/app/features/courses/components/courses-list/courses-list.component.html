@@ -13,7 +13,7 @@
   </div>
   <div class="container" *ngIf="courses$ | async as courses">
     <div class="row" *ngIf="courses.length; else empthyMessage">
-      <app-course-item *ngFor="let course of courses; trackBy: trackById" appBorder [creationDate]="course.creationDate"
+      <app-course-item *ngFor="let course of courses | orderBy; trackBy: trackById" appBorder [creationDate]="course.creationDate"
       [course]="course">
     </app-course-item>
     </div>

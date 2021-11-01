@@ -22,7 +22,7 @@ export const courseData: CourseModel[] = [
     id: 3,
     title: 'VIdeo Course 3',
     creationDate: new Date(2021, 12, 14),
-    duration: 14,
+    duration: 70,
     description: 'Learn about where you can find course descriptions',
     toRated: true,
   },
