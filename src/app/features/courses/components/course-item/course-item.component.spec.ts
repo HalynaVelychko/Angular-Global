@@ -4,6 +4,7 @@ import { CourseItemComponent } from './course-item.component';
 import { take} from "rxjs/operators";
 
 import { CourseModel } from './../../models/course.model';
+import { ButtonStubComponent } from 'src/app/mock/components.mock';
 
 describe('CourseItemComponent', () => {
   let component: CourseItemComponent;
@@ -11,7 +12,7 @@ describe('CourseItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourseItemComponent ],
+      declarations: [ CourseItemComponent, ButtonStubComponent ],
     })
       .compileComponents();
   });

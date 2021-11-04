@@ -3,6 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import { CoursesListComponent } from './courses-list.component';
 import {By} from "@angular/platform-browser";
+import { CourseAddStubComponent, CourseItemStubComponent, CoursesSearchStubComponent } from 'src/app/mock/components.mock';
 
 describe('CourseListComponent', () => {
   let component: CoursesListComponent;
@@ -10,7 +11,12 @@ describe('CourseListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoursesListComponent ],
+      declarations: [
+        CoursesListComponent,
+        CoursesSearchStubComponent,
+        CourseItemStubComponent,
+        CourseAddStubComponent,
+       ],
     })
       .compileComponents();
   });

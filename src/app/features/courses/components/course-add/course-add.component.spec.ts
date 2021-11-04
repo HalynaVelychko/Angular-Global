@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ButtonStubComponent } from 'src/app/mock/components.mock';
 
 import { CourseAddComponent } from './course-add.component';
 
@@ -8,7 +9,7 @@ describe('CourseAddComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourseAddComponent ]
+      declarations: [ CourseAddComponent, ButtonStubComponent ],
     })
     .compileComponents();
   });

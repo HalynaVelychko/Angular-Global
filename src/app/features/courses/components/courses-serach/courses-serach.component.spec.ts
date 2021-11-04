@@ -1,8 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { take } from 'rxjs/operators';
 
 import { CoursesSerachComponent } from './courses-serach.component';
+import { ButtonStubComponent } from 'src/app/mock/components.mock';
 
 describe('CoursesSerachComponent', () => {
   let component: CoursesSerachComponent;
@@ -10,7 +12,8 @@ describe('CoursesSerachComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoursesSerachComponent ]
+      imports: [ FormsModule ],
+      declarations: [ CoursesSerachComponent, ButtonStubComponent ],
     })
     .compileComponents();
   });
@@ -25,16 +28,16 @@ describe('CoursesSerachComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should put the search query', (() => {
-    const input = fixture.debugElement.query(By.css('.form-control'));
-    input.nativeElement.value = 'search query';
-    input.nativeElement.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-    expect(input.nativeElement.value).toContain('search query');
+  it('should update inputData', async (() => {
+    fixture.whenStable().then(() => {
+      const input = fixture.debugElement.query(By.css('.form-control'));
+      input.nativeElement.value = 'test'
+      input.nativeElement.dispatchEvent(new Event('input'));
+      expect(fixture.componentInstance.inputData).toBe('test');
+    });
   }));
 
-  it('should console.log input data',  () => {
-    spyOn(console, "log");
+  it('it should output the inputData',  () => {
     const searchQueryData = 'search query';
     component.inputData = searchQueryData;
     component.searchData.pipe(take(1)).subscribe((inputValue: string) => expect(inputValue).toBe(searchQueryData))

@@ -1,6 +1,7 @@
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from '@shared';
-import { NgModule } from '@angular/core';
 
 //Components
 import { CoursesListComponent, CourseItemComponent, CoursesSerachComponent, CourseAddComponent } from './components';
@@ -15,6 +16,7 @@ import { CoursesListComponent, CourseItemComponent, CoursesSerachComponent, Cour
   ],
   imports: [
     SharedModule,
+    FormsModule,
   ],
   exports: [
     CoursesListComponent,
