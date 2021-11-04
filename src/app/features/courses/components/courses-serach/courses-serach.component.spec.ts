@@ -37,10 +37,11 @@ describe('CoursesSerachComponent', () => {
     });
   }));
 
-  it('it should output the inputData',  () => {
+  it('it should emit the inputData',  () => {
+    spyOn(component.searchData, 'emit');
     const searchQueryData = 'search query';
     component.inputData = searchQueryData;
-    component.searchData.pipe(take(1)).subscribe((inputValue: string) => expect(inputValue).toBe(searchQueryData))
     component.onSubmit();
+    expect(component.searchData.emit).toHaveBeenCalledWith('search query');
   });
 });
