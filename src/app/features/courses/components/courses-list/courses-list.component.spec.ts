@@ -1,25 +1,20 @@
-import { CourseModel } from './../../models/course.model';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import { CoursesListComponent } from './courses-list.component';
 import {By} from "@angular/platform-browser";
-import { CourseAddStubComponent, CourseItemStubComponent, CoursesSearchStubComponent } from 'src/app/mock/components.mock';
+import { testHelper } from './../../../../mock/test-helper';
+import { CourseModel } from './../../models/course.model';
+import { CourseAddStubComponent, CourseItemStubComponent, CoursesSearchStubComponent } from '../../../../mock/components.mock';
 
 describe('CourseListComponent', () => {
   let component: CoursesListComponent;
   let fixture: ComponentFixture<CoursesListComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [
-        CoursesListComponent,
-        CoursesSearchStubComponent,
-        CourseItemStubComponent,
-        CourseAddStubComponent,
-       ],
-    })
-      .compileComponents();
-  });
+  const declarations = [
+    CoursesSearchStubComponent,
+    CourseItemStubComponent,
+    CourseAddStubComponent,
+  ]
+  testHelper(CoursesListComponent, declarations, [], [] )
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CoursesListComponent);

@@ -1,22 +1,16 @@
 import { FormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { testHelper } from './../../../../mock/test-helper';
 import { By } from '@angular/platform-browser';
-import { take } from 'rxjs/operators';
 
 import { CoursesSerachComponent } from './courses-serach.component';
-import { ButtonStubComponent } from 'src/app/mock/components.mock';
 
 describe('CoursesSerachComponent', () => {
   let component: CoursesSerachComponent;
   let fixture: ComponentFixture<CoursesSerachComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ FormsModule ],
-      declarations: [ CoursesSerachComponent, ButtonStubComponent ],
-    })
-    .compileComponents();
-  });
+  const imports = [FormsModule]
+  testHelper(CoursesSerachComponent, [], imports, [])
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CoursesSerachComponent);

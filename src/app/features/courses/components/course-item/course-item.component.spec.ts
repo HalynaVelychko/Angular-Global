@@ -1,21 +1,16 @@
+import { testHelper } from './../../../../mock/test-helper';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseItemComponent } from './course-item.component';
 import { take} from "rxjs/operators";
 
 import { CourseModel } from './../../models/course.model';
-import { ButtonStubComponent } from 'src/app/mock/components.mock';
 
 describe('CourseItemComponent', () => {
   let component: CourseItemComponent;
   let fixture: ComponentFixture<CourseItemComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CourseItemComponent, ButtonStubComponent ],
-    })
-      .compileComponents();
-  });
+  testHelper(CourseItemComponent,[], [], []);
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseItemComponent);
