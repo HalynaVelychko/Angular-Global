@@ -1,26 +1,25 @@
 import { CourseModel } from './../../features/courses/models/course.model';
-import { OnDestroy, Pipe, PipeTransform } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Pipe, PipeTransform } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import {  switchMap } from 'rxjs/operators';
 
 @Pipe({
-  name: 'filter',
+  name: 'filterBy',
 })
-export class FilterPipe implements PipeTransform, OnDestroy {
-  subscription!: Subscription;
+export class FilterPipe implements PipeTransform {
   filteredArr!: CourseModel[];
 
-  transform(arr: Observable<CourseModel[]>, searchValue: string): Observable<CourseModel[]> | CourseModel[] {
-    if (!searchValue) {
+  transform(arr: Observable<CourseModel[]>, searchValue: string): Observable<CourseModel[]>  {
+    if(!searchValue) {
       return arr;
     }
-   this.subscription = arr.subscribe((data) => {
-      this.filteredArr = data.filter(item =>  item.title.toLowerCase().includes(searchValue.toLowerCase()))
-    })
-    return this.filteredArr;
-  }
+    return arr.pipe(
+      switchMap((items: CourseModel[]) => {
+        this.filteredArr = items.filter(item =>  item.title.toLowerCase().includes(searchValue.toLowerCase()))
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+        return of(this.filteredArr);
+      }),
+    )
   }
 }
 

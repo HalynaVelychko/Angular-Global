@@ -16,12 +16,12 @@ import { courseData } from '../../../../mockData/data';
 export class CoursesListComponent  {
   courses$$ = new BehaviorSubject<CourseModel[]>(courseData);
   courses$ = this.courses$$.asObservable();
+  searchValue!: string;
 
-  constructor(private filter: FilterPipe) { }
+  constructor() { }
 
   onSearchData(searchQuery: string): void {
-    const query = searchQuery.trim();
-    this.filter.transform(this.courses$, query);
+    this.searchValue = searchQuery;
   }
 
   trackById(_index: number, course: CourseModel): number {
