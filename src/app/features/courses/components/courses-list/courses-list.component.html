@@ -11,13 +11,18 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <app-course-item
-      *ngFor="let course of courses$ | async; trackBy: trackById"
-      [course]="course"
-      (editCourse)="onEditCourse($event)"
-      (deleteCourse)="onDeleteCourse($event)"
-      >
-  </app-course-item>
+  <div class="container"  *ngIf="courses$| filterBy: searchValue| async as courses">
+    <div class="row" *ngIf="courses.length; else empthyMessage">
+      <app-course-item *ngFor="let course of courses | orderBy; trackBy: trackById" appBorder [creationDate]="course.creationDate"
+      [course]="course">
+    </app-course-item>
+    </div>
   </div>
+  <ng-template #empthyMessage>
+    <div class="container d-flex justify-content-center">
+      <div class="col-md-10 courses__empty-block">
+        <p>No data, feel free to add new course</p>
+      </div>
+    </div>
+  </ng-template>
 </main>

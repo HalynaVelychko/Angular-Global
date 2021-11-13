@@ -4,4 +4,5 @@ export interface CourseModel {
   creationDate: Date;
   duration: number;
   description: string;
+  toRated?: boolean;
 }

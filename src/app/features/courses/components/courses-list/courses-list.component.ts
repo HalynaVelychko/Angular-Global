@@ -1,3 +1,4 @@
+import { FilterPipe } from './../../../../shared/pipes/filter.pipe';
 import { Component } from '@angular/core';
 
 //rxjs
@@ -10,14 +11,17 @@ import { courseData } from '../../../../mockData/data';
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.scss'],
+  providers: [FilterPipe],
 })
 export class CoursesListComponent  {
-  courses$ = new BehaviorSubject<CourseModel[]>(courseData);
+  courses$$ = new BehaviorSubject<CourseModel[]>(courseData);
+  courses$ = this.courses$$.asObservable();
+  searchValue!: string;
 
   constructor() { }
 
-  onSearchData(data: string): void {
-    console.log(`This ${data} was found!!`)
+  onSearchData(searchQuery: string): void {
+    this.searchValue = searchQuery;
   }
 
   trackById(_index: number, course: CourseModel): number {

@@ -4,4 +4,14 @@
     padding: 1rem 0;
     background-color: lightgrey;
   }
+  &__empty-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    background-color: white;
+    border: 3px dashed black;
+    margin: 3rem;
+    font-size: 2rem;
+  }
 }
