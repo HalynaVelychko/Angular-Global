@@ -12,13 +12,13 @@
       </div>
       <div class="col-md-3 d-flex justify-content-end align-items-baseline ms-2">
         <img src="../../../../../assets/icon/calendar.svg" alt="calendar-icon">
-        <p class="ms-1">{{ course.creationDate | date }}</p>
+        <p class="ms-1">{{ course?.creationDate | date }}</p>
       </div>
     </div>
   </div>
   <div class="row mx-4">
     <div class="col-md-10">
-      <p>{{ course.description }}</p>
+      <p>{{ course?.description }}</p>
     </div>
     <div class="col-md-2 d-flex">
       <div class="col-md-6">
