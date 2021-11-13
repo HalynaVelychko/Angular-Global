@@ -23,4 +23,12 @@ export class CoursesListComponent  {
   trackById(_index: number, course: CourseModel): number {
     return course.id
   }
+
+  onEditCourse(course: CourseModel): void {
+    console.log(`${course} was edited!`)
+  }
+
+  onDeleteCourse(course: CourseModel): void {
+    console.log(`${course} was deleted!`)
+  }
 }
