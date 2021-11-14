@@ -1,24 +1,27 @@
 import { FilterPipe } from './../../../../shared/pipes/filter.pipe';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 //rxjs
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 //Models
 import { CourseModel } from './../../models/course.model';
-import { courseData } from '../../../../mockData/data';
+import { CoursesService } from '../../services/courses.service';
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.scss'],
   providers: [FilterPipe],
 })
-export class CoursesListComponent  {
-  courses$$ = new BehaviorSubject<CourseModel[]>(courseData);
-  courses$ = this.courses$$.asObservable();
+export class CoursesListComponent implements OnInit {
+  courses$!: Observable<CourseModel[]>;
   searchValue!: string;
 
-  constructor() { }
+  constructor(private coursesService: CoursesService) { }
+
+  ngOnInit(): void {
+    this.courses$ = this.coursesService.getCourses()
+  }
 
   onSearchData(searchQuery: string): void {
     this.searchValue = searchQuery;
@@ -32,7 +35,9 @@ export class CoursesListComponent  {
     console.log(`${course} was edited!`)
   }
 
-  onDeleteCourse(course: CourseModel): void {
-    console.log(`${course} was deleted!`)
+  onDeleteCourse(id: number): void {
+    if(confirm('Are sure you want to delete this course?')) {
+      this.coursesService.removeCourse(id);
+    }
   }
 }
