@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,33 +9,30 @@ export class AuthService {
     email: 'test@gmail.com',
     password: 'test78',
   }
-  private logger = new Subject<boolean>();
-  private loggedIn = false;
+
+  private logger$$ = new BehaviorSubject<boolean>(false);
 
   constructor() {}
 
   isAuthenticated(): Observable<boolean> {
-    return this.logger.asObservable();
+    return this.logger$$.asObservable();
   }
 
   signIn(email: string, password: string): void {
     if(this.credentials.email === email && this.credentials.password === password) {
       localStorage.setItem('isAuthenticated',  'true');
-      this.loggedIn = true;
-      this.logger.next(this.loggedIn);
 
-      console.log('setItem')
+      this.logger$$.next(true);
     } else {
       localStorage.removeItem('isAuthenticated');
-      this.loggedIn = false;
-      this.logger.next(this.loggedIn);
 
-      console.log('removeItem')
+      this.logger$$.next(false);
     }
   }
 
   signOut(): void {
     localStorage.removeItem('isAuthenticated');
+    this.logger$$.next(false);
   }
 
   getUserInfo(): string {
