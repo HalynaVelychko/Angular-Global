@@ -1,1 +1,15 @@
-<p>login works!</p>
+<div class="row shadow-lg p-4 bg-white login-wrapper">
+  <h2 class="mb-4">Login</h2>
+  <form>
+    <div class="gx-0">
+      <label for="email"><b>E-mail:</b></label>
+      <input [(ngModel)]="email" id="email" type="email" placeholder="Enter e-mail" name="email" required>
+      <label for="password" class="mt-2"><b>Password:</b></label>
+      <input [(ngModel)]="password" id="password" type="password" placeholder="Enter password" name="password" required>
+    </div>
+    <div class="login-btn-container mt-3">
+      <a class="forgot-password" href="#">Forgot password?</a>
+      <button type="submit" (click)="onSignIn()">Login</button>
+    </div>
+  </form>
+</div>

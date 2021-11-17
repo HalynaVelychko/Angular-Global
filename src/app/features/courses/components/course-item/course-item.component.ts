@@ -13,7 +13,7 @@ import { ButtonSize, ButtonType } from '@shared';
 export class CourseItemComponent {
   @Input() course!: CourseModel;
 
-  @Output() deleteCourse = new EventEmitter<CourseModel>()
+  @Output() deleteCourse = new EventEmitter<number>()
   @Output() editCourse = new EventEmitter<CourseModel>()
 
   buttonType = ButtonType.BLUE;
@@ -26,6 +26,6 @@ export class CourseItemComponent {
   }
 
   onDeleteCourse() {
-    this.deleteCourse.emit(this.course)
+    this.deleteCourse.emit(this.course.id)
   }
 }

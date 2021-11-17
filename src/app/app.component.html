@@ -1,4 +1,4 @@
 <app-header></app-header>
-<app-breadcrumbs></app-breadcrumbs>
-<app-courses-list></app-courses-list>
+<app-login *appIfAuthenticated="!isLogged"></app-login>
+<app-courses-list *appIfAuthenticated="isLogged"></app-courses-list>
 <app-footer></app-footer>
