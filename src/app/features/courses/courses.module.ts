@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '@shared';
 
 //Components
-import { CoursesListComponent, CourseItemComponent, CoursesSerachComponent, CourseAddComponent } from './components';
-
+import { CoursesListComponent, CourseItemComponent, CoursesSerachComponent, CourseAddComponent, CourseFormComponent } from './components';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -14,11 +14,13 @@ import { CoursesListComponent, CourseItemComponent, CoursesSerachComponent, Cour
     CourseItemComponent,
     CoursesSerachComponent,
     CourseAddComponent,
+    CourseFormComponent,
   ],
   imports: [
     SharedModule,
     FormsModule,
     CoreModule,
+    MatDialogModule,
   ],
   exports: [
     CoursesListComponent,

@@ -1,5 +1,5 @@
 import {
-  Component, Input, EventEmitter, Output } from '@angular/core';
+  Component, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 
 //Models
 import { CourseModel } from '../../models/course.model';
@@ -9,6 +9,7 @@ import { ButtonSize, ButtonType } from '@shared';
   selector: 'app-course-item',
   templateUrl: './course-item.component.html',
   styleUrls: ['./course-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CourseItemComponent {
   @Input() course!: CourseModel;
