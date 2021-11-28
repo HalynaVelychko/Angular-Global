@@ -1,5 +1,6 @@
+import { catchError, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, of, Subject, throwError } from 'rxjs';
 import { courseData } from 'src/app/mockData/data';
 import { CourseModel } from '../models/course.model';
 
@@ -23,8 +24,14 @@ export class CoursesService {
     this.updateCoursesData();
   }
 
-  getCourseById(id: number): CourseModel | undefined {
-    return this.courses.find((course: CourseModel) => course.id === id)
+  getCourseById(id: number): Observable<CourseModel> {
+    return this.getCourses().pipe(
+      switchMap((courses: CourseModel[]) => {
+        const course = courses.find(course => course.id === id);
+        return course ? of(course): EMPTY
+      }),
+      catchError(_ => throwError('Error in getCourseByIdMethod')),
+    )
   }
 
 

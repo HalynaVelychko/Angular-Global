@@ -1,4 +1,11 @@
 <app-header></app-header>
-<app-login *appIfAuthenticated="!isLogged"></app-login>
-<app-courses-list *appIfAuthenticated="isLogged"></app-courses-list>
+<!-- <app-login *appIfAuthenticated="!isLogged"></app-login>
+<app-courses-list *appIfAuthenticated="isLogged"></app-courses-list> -->
+<!-- <app-login></app-login> -->
+<!-- <app-courses-list></app-courses-list> -->
+<router-outlet
+  #routerOutlet="outlet"
+  (activate)='onActivate($event, routerOutlet)'
+  (deactivate)='onDeactivate($event, routerOutlet)'
+></router-outlet>
 <app-footer></app-footer>

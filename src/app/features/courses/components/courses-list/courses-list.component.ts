@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 //Models
 import { CourseModel } from './../../models/course.model';
 import { CoursesService } from '../../services/courses.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
@@ -17,7 +18,9 @@ export class CoursesListComponent implements OnInit {
   courses$!: Observable<CourseModel[]>;
   searchValue!: string;
 
-  constructor(private coursesService: CoursesService) { }
+  constructor(
+    private router: Router,
+    private coursesService: CoursesService) { }
 
   ngOnInit(): void {
     this.courses$ = this.coursesService.getCourses()
@@ -32,12 +35,17 @@ export class CoursesListComponent implements OnInit {
   }
 
   onEditCourse(course: CourseModel): void {
-    console.log(`${course} was edited!`)
+    const link = ['/edit', course.id];
+    this.router.navigate(link);
   }
 
   onDeleteCourse(id: number): void {
     if(confirm('Are sure you want to delete this course?')) {
       this.coursesService.removeCourse(id);
     }
+  }
+
+  onAddNewCourse(): void {
+    this.router.navigate(['/add-course']);
   }
 }
