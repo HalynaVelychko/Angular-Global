@@ -1,6 +1,6 @@
 <div class="row shadow-lg p-4 bg-white login-wrapper">
   <h2 class="mb-4">Login</h2>
-  <form>
+  <form (ngSubmit)="onSignIn()" #form="ngForm">
     <div class="gx-0">
       <label for="email"><b>E-mail:</b></label>
       <input [(ngModel)]="email" id="email" type="email" placeholder="Enter e-mail" name="email" required>
@@ -9,7 +9,7 @@
     </div>
     <div class="login-btn-container mt-3">
       <a class="forgot-password" href="#">Forgot password?</a>
-      <button type="submit" (click)="onSignIn()">Login</button>
+      <button type="submit" [disabled]="form.invalid">Login</button>
     </div>
   </form>
 </div>

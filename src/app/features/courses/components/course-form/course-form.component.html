@@ -40,7 +40,7 @@
       >
     </div>
     <div class="save-btn-container mt-3">
-      <button class="cancel-btn" type="button">Cancel</button>
+      <button class="cancel-btn" type="button" (click)="onCancel()">Cancel</button>
       <button class="save-btn" type="submit" [disabled]="form.invalid">Save</button>
     </div>
   </form>

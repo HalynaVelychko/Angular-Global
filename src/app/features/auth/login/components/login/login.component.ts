@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,11 +11,16 @@ export class LoginComponent {
   email!: string;
   password!: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   onSignIn(): void {
     this.authService.signIn(this.email, this.password);
-    console.log('Logged in successfully')
+    if(this.authService.isAuthenticated()) {
+      const redirect = this.authService.redirectUrl
+            ? this.authService.redirectUrl
+            : '/courses';
+          this.router.navigate([redirect]);
+    }
   }
 }
 

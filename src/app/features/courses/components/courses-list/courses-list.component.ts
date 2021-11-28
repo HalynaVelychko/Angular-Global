@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 //Models
 import { CourseModel } from './../../models/course.model';
 import { CoursesService } from '../../services/courses.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
@@ -17,10 +17,13 @@ import { Router } from '@angular/router';
 export class CoursesListComponent implements OnInit {
   courses$!: Observable<CourseModel[]>;
   searchValue!: string;
+  url:any
 
   constructor(
     private router: Router,
-    private coursesService: CoursesService) { }
+    private coursesService: CoursesService,
+    private route: ActivatedRoute,
+    ) { }
 
   ngOnInit(): void {
     this.courses$ = this.coursesService.getCourses()

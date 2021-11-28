@@ -10,6 +10,7 @@ export class AuthService {
     password: 'test78',
   }
 
+  redirectUrl!: string;
   private logger$$ = new BehaviorSubject<boolean>(false);
 
   constructor() {}

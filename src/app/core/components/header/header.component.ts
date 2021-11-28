@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ButtonType, ButtonSize } from '@shared';
 
@@ -11,8 +12,11 @@ export class HeaderComponent  {
   buttonType = ButtonType.TRANSPARENT;
   buttonSize = ButtonSize.SMALL;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
+  onLog(): void {
+    this.router.navigate(['/login'])
+  }
 
 
 }

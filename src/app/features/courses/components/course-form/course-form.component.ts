@@ -30,7 +30,6 @@ export class CourseFormComponent implements OnInit  {
       next: (course: CourseModel) => (this.course = { ...course}),
       error: (err: any) => console.log(err),
     }
-    // const id = this.route.snapshot.paramMap.get('userID')!;
     this.route.paramMap
       .pipe(
         switchMap((params: ParamMap) =>
