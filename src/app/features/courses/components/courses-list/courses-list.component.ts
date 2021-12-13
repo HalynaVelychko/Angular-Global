@@ -26,7 +26,7 @@ export class CoursesListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.courses$ = this.coursesService.getCourses()
+    this.courses$ = this.coursesService.getCourses();
   }
 
   onSearchData(searchQuery: string): void {
@@ -38,7 +38,8 @@ export class CoursesListComponent implements OnInit {
   }
 
   onEditCourse(course: CourseModel): void {
-    const link = ['/edit', course.id];
+    const link = ['/courses/edit', course.id];
+    console.log(link)
     this.router.navigate(link);
   }
 
@@ -49,6 +50,6 @@ export class CoursesListComponent implements OnInit {
   }
 
   onAddNewCourse(): void {
-    this.router.navigate(['/add-course']);
+    this.router.navigate(['/courses/add-course']);
   }
 }

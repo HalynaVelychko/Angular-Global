@@ -1,3 +1,4 @@
+import { CoursesRoutingModule } from './courses-routing.module';
 import { CoreModule } from './../../core/core.module';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { CoursesListComponent, CourseItemComponent, CoursesSerachComponent, Cour
     SharedModule,
     FormsModule,
     CoreModule,
+    CoursesRoutingModule,
   ],
   exports: [
     CoursesListComponent,

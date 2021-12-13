@@ -1,7 +1,4 @@
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-
-// rxjs
-import { map, switchMap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
 // import { courseData } from 'src/app/mockData/data';
@@ -23,18 +20,14 @@ export class CourseFormComponent implements OnInit  {
   }
 
   ngOnInit(): void {
+    const currentCourse = this.route.snapshot.params;
+    if(currentCourse.courseID){
+      this.course = this.courseService.getCourseById(+currentCourse.courseID)
+    }
+
     this.course = {
       creationDate: new Date(Date.now()),
-    } as CourseModel;
-    const observer = {
-      next: (course: CourseModel) => (this.course = { ...course}),
-      error: (err: any) => console.log(err),
-    }
-    this.route.paramMap
-      .pipe(
-        switchMap((params: ParamMap) =>
-          this.courseService.getCourseById(+params.get('courseID')!)),
-    map((course) => course ? course : {} as CourseModel)).subscribe(observer)
+    } as CourseModel;;
   }
 
 

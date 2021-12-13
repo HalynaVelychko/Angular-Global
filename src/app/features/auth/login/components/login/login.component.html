@@ -3,9 +3,9 @@
   <form (ngSubmit)="onSignIn()" #form="ngForm">
     <div class="gx-0">
       <label for="email"><b>E-mail:</b></label>
-      <input [(ngModel)]="email" id="email" type="email" placeholder="Enter e-mail" name="email" required>
+      <input [(ngModel)]="user.email" id="email" type="email" placeholder="Enter e-mail" name="email" required>
       <label for="password" class="mt-2"><b>Password:</b></label>
-      <input [(ngModel)]="password" id="password" type="password" placeholder="Enter password" name="password" required>
+      <input [(ngModel)]="user.password" id="password" type="password" placeholder="Enter password" name="password" required>
     </div>
     <div class="login-btn-container mt-3">
       <a class="forgot-password" href="#">Forgot password?</a>

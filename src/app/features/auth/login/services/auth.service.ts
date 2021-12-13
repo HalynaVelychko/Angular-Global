@@ -1,42 +1,29 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  credentials = {
-    email: 'test@gmail.com',
-    password: 'test78',
-  }
-
   redirectUrl!: string;
   private logger$$ = new BehaviorSubject<boolean>(false);
 
   constructor() {}
 
-  isAuthenticated(): Observable<boolean> {
-    return this.logger$$.asObservable();
-  }
+  isAuthenticated = this.logger$$.getValue();
 
-  signIn(email: string, password: string): void {
-    if(this.credentials.email === email && this.credentials.password === password) {
-      localStorage.setItem('isAuthenticated',  'true');
-
+  signIn(user: { email: string, password: string }): void {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      localStorage.setItem('token', `${user.email}${user.password}`);
       this.logger$$.next(true);
-    } else {
-      localStorage.removeItem('isAuthenticated');
-
-      this.logger$$.next(false);
-    }
   }
 
   signOut(): void {
-    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('currentUser');
     this.logger$$.next(false);
   }
 
-  getUserInfo(): string {
-    return 'test@gmail.com';
+  getUserInfo(): string | null {
+    return localStorage.getItem('currentUser');
   }
 }
