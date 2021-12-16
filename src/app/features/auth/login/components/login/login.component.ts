@@ -20,7 +20,8 @@ export class LoginComponent {
 
   onSignIn(): void {
     this.authService.signIn(this.user);
-    this.isLogged = this.authService.isAuthenticated;
+    this.isLogged = this.authService.logger$$.getValue();
+    console.log(this.isLogged)
     if(this.isLogged) {
       const redirect = this.authService.redirectUrl
             ? this.authService.redirectUrl

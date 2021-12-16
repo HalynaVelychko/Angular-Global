@@ -6,11 +6,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   redirectUrl!: string;
-  private logger$$ = new BehaviorSubject<boolean>(false);
+  logger$$ = new BehaviorSubject<boolean>(false);
 
   constructor() {}
-
-  isAuthenticated = this.logger$$.getValue();
 
   signIn(user: { email: string, password: string }): void {
       localStorage.setItem('currentUser', JSON.stringify(user));
