@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -7,14 +8,26 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  email!: string;
-  password!: string;
+  user = {
+    email: '',
+    password: '',
+  }
 
-  constructor(private authService: AuthService) { }
+  isLogged!: boolean;
+
+  constructor(private authService: AuthService, private router: Router) { }
+
 
   onSignIn(): void {
-    this.authService.signIn(this.email, this.password);
-    console.log('Logged in successfully')
+    this.authService.signIn(this.user);
+    this.isLogged = this.authService.logger$$.getValue();
+    console.log(this.isLogged)
+    if(this.isLogged) {
+      const redirect = this.authService.redirectUrl
+            ? this.authService.redirectUrl
+            : '/courses';
+          this.router.navigate([redirect]);
+    }
   }
 }
 
