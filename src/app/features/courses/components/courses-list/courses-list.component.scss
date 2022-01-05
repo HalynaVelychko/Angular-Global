@@ -2,7 +2,6 @@
   &__wrapper {
     height: calc(100vh - 180px);
     padding: 1rem 0;
-    background-color: lightgrey;
   }
   &__empty-block {
     display: flex;
@@ -13,5 +12,14 @@
     border: 3px dashed black;
     margin: 3rem;
     font-size: 2rem;
+  }
+
+  &__list {
+    margin-top: 1.5rem;
+  }
+
+  &__action {
+    max-width: 250px;
+    margin-top: 2rem;
   }
 }

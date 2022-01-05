@@ -2,8 +2,8 @@
   <h2 class="mb-4">Login</h2>
   <form (ngSubmit)="onSignIn()" #form="ngForm">
     <div class="gx-0">
-      <label for="email"><b>E-mail:</b></label>
-      <input [(ngModel)]="user.email" id="email" type="email" placeholder="Enter e-mail" name="email" required>
+      <label for="email"><b>Login:</b></label>
+      <input [(ngModel)]="user.login" id="login" type="text" placeholder="Login" name="login" required>
       <label for="password" class="mt-2"><b>Password:</b></label>
       <input [(ngModel)]="user.password" id="password" type="password" placeholder="Enter password" name="password" required>
     </div>

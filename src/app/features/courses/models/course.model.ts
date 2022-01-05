@@ -1,8 +1,13 @@
 export interface CourseModel {
-  id: number;
-  title: string;
-  creationDate: Date;
-  duration: number;
+  authors: [];
+  date: string;
   description: string;
-  toRated?: boolean;
+  id: number;
+  isTopRated: boolean;
+  length: string;
+  name: string;
+}
+
+export interface CourseModelId {
+  courseID: string;
 }

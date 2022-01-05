@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'duration',
 })
 export class DurationPipe implements PipeTransform {
-  transform(minutes: number): string {
-    return minutes < 60 ? `${minutes} min` : `${(minutes / 60).toFixed()}h ${minutes % 60} min`;
+  transform(minutes: string): string {
+    return +minutes < 60 ? `${minutes} min` : `${(+minutes / 60).toFixed()}h ${+minutes % 60} min`;
   }
 }

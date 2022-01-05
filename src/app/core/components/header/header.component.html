@@ -7,15 +7,10 @@
           <h1 class="header__text">Video Course</h1>
         </a>
       </div>
+
       <div class="col-md-4 d-flex justify-content-md-end">
-        <div class="col-md-3 justify-content-md-end">
-          <app-button
-            buttonText="User Login"
-            iconSrc="../../../../assets/icon/login.svg"
-            [buttonType]="buttonType"
-            [buttonSize]="buttonSize"
-            (click)="onLog()"
-          ></app-button>
+        <div *ngIf="isAuthorized$ | async" class="col-md-3 justify-content-md-end">
+          <p class="header__user">Hi,<span>{{(user$ | async)?.name?.first}}</span></p>
         </div>
         <div class="col-md-3">
           <app-button
@@ -23,6 +18,7 @@
           iconSrc="../../../../assets/icon/logout.svg"
           [buttonType]="buttonType"
           [buttonSize]="buttonSize"
+          (click)="onLogOut()"
         ></app-button>
         </div>
       </div>

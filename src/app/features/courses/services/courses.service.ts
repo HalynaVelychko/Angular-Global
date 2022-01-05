@@ -1,63 +1,45 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of} from 'rxjs';
-import { courseData } from 'src/app/mockData/data';
+import { Observable } from 'rxjs';
+import { apiUrl, COURSES_API } from 'src/app/api/api.config';
 import { CourseModel } from '../models/course.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoursesService {
-  private courses: CourseModel[] = courseData;
-  private coursesDataSubject$$: BehaviorSubject<CourseModel[]> = new BehaviorSubject(this.courses);
+  showFromCourse = 0;
+  showQuantityCourses = 3;
 
-
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getCourses(): Observable<CourseModel[]> {
-    return of(this.coursesDataSubject$$.getValue())
+    return this.http.get<CourseModel[]>(`${apiUrl}${COURSES_API}?start=${this.showFromCourse}&count=${this.showQuantityCourses}`);
   }
 
-  addCourse(course: CourseModel): void {
-    this.courses = [ ...this.courses, course ];
-
-    this.updateCoursesData();
+  addCourse(course: CourseModel): Observable<CourseModel> {
+    console.log(course)
+    return this.http.post<CourseModel>(`${apiUrl}${COURSES_API}`, course);
   }
 
-  getCourseById(id: number): any {
-   const course = this.coursesDataSubject$$
-                  .getValue()
-                  .find((course) =>course.id === id)
-
-   return  course;
+  getCourseById(id: number): Observable<CourseModel> {
+   return  this.http.get<CourseModel>(`${apiUrl}${COURSES_API}/${id}`);
   }
 
-
-  updateCourse(id: number, course: CourseModel): void {
-    this.courses =  this.courses.map((c: CourseModel) => {
-      if(c.id === id){
-        return course;
-      }
-      return c;
-    });
-
-    this.updateCoursesData();
+  updateCourse(id: number, course: CourseModel): Observable<CourseModel> {
+    return this.http.patch<CourseModel>(`${apiUrl}${COURSES_API}/${id}`, course)
   }
 
-  removeCourse(id: number): void {
-    const indexCourse = this.findCourseByIndex(id);
-    this.courses = [
-      ...this.courses.slice(0, indexCourse),
-      ...this.courses.slice(indexCourse + 1),
-    ]
-
-    this.updateCoursesData();
+  removeCourse(id: number): Observable<CourseModel> {
+    return this.http.delete<CourseModel>(`${apiUrl}${COURSES_API}/${id}`)
   }
 
-  private findCourseByIndex(id: number): number {
-    return this.courses.findIndex((course: CourseModel) => course.id === id)
+  loadMore(): Observable<CourseModel[]> {
+    this.showQuantityCourses +=3
+    return this.http.get<CourseModel[]>(`${apiUrl}${COURSES_API}?start=${this.showFromCourse}&count=${this.showQuantityCourses}`);
   }
 
-  private updateCoursesData(): void {
-    this.coursesDataSubject$$.next(this.courses);
+  searchCourse(query: string): Observable<CourseModel[]> {
+    return this.http.get<CourseModel[]>(`${apiUrl}${COURSES_API}?textFragment=${query}`)
   }
 }

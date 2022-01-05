@@ -1,9 +1,10 @@
-import { ActivatedRoute, Router } from '@angular/router';
-
 import { Component, OnInit } from '@angular/core';
-// import { courseData } from 'src/app/mockData/data';
+
+import { CourseModel } from './../../models/course.model';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+
 import { CoursesService } from '../../services/courses.service';
-import { CourseModel } from '../../models/course.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-course-form',
@@ -11,8 +12,10 @@ import { CourseModel } from '../../models/course.model';
   styleUrls: ['./course-form.component.scss'],
 })
 export class CourseFormComponent implements OnInit  {
-  course!: CourseModel;
-  dateToday = new Date();
+  course!:CourseModel;
+  currentCourseId!: Params;
+  subscription!: Subscription;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -20,24 +23,31 @@ export class CourseFormComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    const currentCourse = this.route.snapshot.params;
-    if(currentCourse.courseID){
-      this.course = this.courseService.getCourseById(+currentCourse.courseID)
+    this.currentCourseId = this.route.snapshot.params;
+    if(this.currentCourseId.courseID){
+      this.subscription = this.courseService
+        .getCourseById(+this.currentCourseId.courseID)
+        .subscribe((course: any) => {
+          this.course = course;
+      });
+    } else {
+      this.course = {} as CourseModel;
     }
-
-    this.course = {
-      creationDate: new Date(Date.now()),
-    } as CourseModel;;
   }
 
 
   onSave(): void {
-    const course = { ...this.course as CourseModel};
-    console.log(course)
-    if(course.id) {
-      this.courseService.updateCourse(course.id, course)
+    if(this.route.routeConfig?.path === 'edit/:courseID') {
+      this.subscription = this.courseService
+        .updateCourse(this.currentCourseId.courseID, this.course)
+        .subscribe((updatedCourse: CourseModel) => {
+          this.course = updatedCourse;
+      })
     } else {
-      this.courseService.addCourse(course)
+      this.course = { ...this.course, id: +Math.floor(Math.random()*100000), isTopRated: true }
+      this.courseService.addCourse(this.course).subscribe((data) => {
+        console.log(data)
+      });
     }
     this.onCancel();
   }

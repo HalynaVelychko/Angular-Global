@@ -15,7 +15,7 @@ export class FilterPipe implements PipeTransform {
     }
     return arr.pipe(
       switchMap((items: CourseModel[]) => {
-        this.filteredArr = items.filter(item =>  item.title.toLowerCase().includes(searchValue.toLowerCase()))
+        this.filteredArr = items.filter(item =>  item.name.toLowerCase().includes(searchValue.toLowerCase()))
 
         return of(this.filteredArr);
       }),
