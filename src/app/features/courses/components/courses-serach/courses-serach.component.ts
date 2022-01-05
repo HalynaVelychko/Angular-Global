@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 import { ButtonType, ButtonSize } from '@shared';
 
@@ -6,6 +6,7 @@ import { ButtonType, ButtonSize } from '@shared';
   selector: 'app-courses-serach',
   templateUrl: './courses-serach.component.html',
   styleUrls: ['./courses-serach.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoursesSerachComponent  {
   inputData = '';

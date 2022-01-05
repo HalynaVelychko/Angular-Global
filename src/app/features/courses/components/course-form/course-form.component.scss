@@ -1,0 +1,84 @@
+.add-course-wrapper {
+  width: 60%;
+  height: auto;
+  margin: 40px auto;
+  border-radius: 0.25rem;
+
+  input[type=text], textarea[type=text], input[type=number], input[type=date] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0 15px 0;
+    display: block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  input[type=number], input[type=date] {
+    width: 25%;
+    color: grey;
+  }
+
+  input[type=date] {
+    text-transform: uppercase;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.7;
+  }
+
+  #authors {
+    width: 50%;
+  }
+
+  .save-btn-container {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      color: black;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cancel-btn {
+      background-color: lightgray;
+      margin-right: 15px;
+    }
+
+    .save-btn {
+      background-color: green;
+      color: white;
+    }
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 1200px){
+  .add-course-wrapper {
+    width: 80%;
+
+    input[type=number], input[type=date] {
+      width: 50%;
+    }
+
+    #authors {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .add-course-wrapper {
+    width: 100%;
+    margin: 0 0 20px 0;
+
+    input[type=number], input[type=date] {
+      width: 100%;
+    }
+
+    #authors {
+      width: 100%;
+    }
+  }
+}

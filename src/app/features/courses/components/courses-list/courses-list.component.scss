@@ -1,6 +1,6 @@
 .courses {
   &__wrapper {
-    height: 100%;
+    height: calc(100vh - 180px);
     padding: 1rem 0;
     background-color: lightgrey;
   }
