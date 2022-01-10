@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 
 import { ButtonSize, ButtonType } from '@shared';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { AppState, selectCoursesData } from 'src/app/core/@ngrx';
 import { CoursesService } from '../../services/courses.service';
 import { FilterPipe } from './../../../../shared/pipes/filter.pipe';
 
 //Models
 import { CourseModel } from './../../models/course.model';
+
+//Store
+import * as CoursesActions from '../../../../core/@ngrx/courses/courses.actions';
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
@@ -18,29 +23,28 @@ import { CourseModel } from './../../models/course.model';
 export class CoursesListComponent implements OnInit {
   buttonType = ButtonType;
   buttonSize = ButtonSize.LARGE;
-  courses$$ = new BehaviorSubject<CourseModel[]>([]);
-  courses$ = this.courses$$.asObservable();
+  courses$!: Observable<ReadonlyArray<CourseModel>>;
   searchValue!: string;
   url:any
 
   constructor(
     private router: Router,
     private coursesService: CoursesService,
+    private store: Store<AppState>,
     ) { }
 
   ngOnInit(): void {
     this.getCourses();
+    this.store.dispatch(CoursesActions.getCourses())
   }
 
   getCourses(): void {
-    this.coursesService.getCourses().subscribe((courses) => {
-      this.courses$$.next(courses);
-    });
+    this.courses$ = this.store.pipe(select(selectCoursesData))
   }
 
   onSearchData(searchQuery: string): void {
-    this.coursesService.searchCourse(searchQuery)
-      .subscribe((courses) => this.courses$$.next(courses));
+    // this.coursesService.searchCourse(searchQuery)
+    //   .subscribe((courses) => this.courses$$.next(courses));
   }
 
   trackById(_index: number, course: CourseModel): number {
@@ -67,8 +71,8 @@ export class CoursesListComponent implements OnInit {
   }
 
   loadMore(): void {
-    this.coursesService.loadMore().subscribe(courses => {
-      this.courses$$.next(courses);
-    })
+    // this.coursesService.loadMore().subscribe(courses => {
+    //   this.courses$$.next(courses);
+    // })
   }
 }
