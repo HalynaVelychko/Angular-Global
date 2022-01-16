@@ -10,6 +10,11 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: 'courses',
+    loadChildren: () => import('./features/courses/courses-routing.module')
+      .then(m => m.CoursesRoutingModule),
+  },
+  {
     path: '',
     redirectTo: '/courses',
     pathMatch: 'full',

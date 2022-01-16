@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
 
 
   private checkLogin(url: string): boolean | UrlTree {
-    this.isLogged = !!this.authService.getUserInfo();
+    this.isLogged = this.authService.logger$$.getValue();
     if(!this.isLogged) {
       this.authService.redirectUrl = url;
       return this.router.parseUrl('/login')

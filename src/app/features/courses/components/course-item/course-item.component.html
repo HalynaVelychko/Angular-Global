@@ -1,18 +1,18 @@
 <div class="container shadow p-3 my-1 bg-body rounded course-item">
   <div class="row justify-content-between align-items-baseline mx-4">
     <div class="col-md-4">
-      <h2>{{ course.title | uppercase }}
-        <span><i [ngClass]="{ isStarNotShown: !course.toRated }" [ngStyle]="{ 'color': 'gold'}"  class="bi bi-star-fill"></i></span>
+      <h2>{{ course.name | uppercase }}
+        <span><i [ngClass]="{ isStarNotShown: !course.isTopRated}" [ngStyle]="{ 'color': 'gold'}"  class="bi bi-star-fill"></i></span>
       </h2>
     </div>
     <div class="col-md-4 d-flex justify-content-end p-0">
       <div class="col-md-3 d-flex justify-content-end align-items-baseline ms-2">
         <img src="../../../../../assets/icon/clock.svg" alt="clock-icon">
-        <p class="ms-1">{{ course.duration | duration }}</p>
+        <p class="ms-1">{{ course.length| duration }}</p>
       </div>
       <div class="col-md-3 d-flex justify-content-end align-items-baseline ms-2">
         <img src="../../../../../assets/icon/calendar.svg" alt="calendar-icon">
-        <p class="ms-1">{{ course?.creationDate | date }}</p>
+        <p class="ms-1">{{ course?.date | date }}</p>
       </div>
     </div>
   </div>

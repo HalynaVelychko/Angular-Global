@@ -2,14 +2,14 @@
   <h2 class="mb-4">Course Form</h2>
   <form *ngIf="course" (ngSubmit)="onSave()" #form="ngForm">
     <div class="gx-0">
-      <label for="title"><b>Title:</b></label>
+      <label for="name"><b>Title:</b></label>
       <input
-        id="title"
+        id="name"
         type="text"
         placeholder="Text input"
-        name="title"
+        name="name"
         required
-        [(ngModel)]="course.title"
+        [(ngModel)]="course.name"
       >
       <label for="description"><b>Description:</b></label>
       <textarea
@@ -27,7 +27,7 @@
         placeholder="minutes"
         name="duration"
         required
-        [(ngModel)]="course.duration"
+        [(ngModel)]="course.length"
       >
       <label for="date"><b>Creation date:</b></label>
       <input
@@ -35,8 +35,7 @@
         type="date"
         placeholder=""
         name="date"
-        disabled
-        [value]="course.creationDate"
+        [(ngModel)]="course.date"
       >
     </div>
     <div class="save-btn-container mt-3">

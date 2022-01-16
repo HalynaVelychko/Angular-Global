@@ -8,23 +8,34 @@
         ></app-courses-serach>
       </div>
       <div class="col-md-2">
-        <app-course-add
-          (addCourse)="onAddNewCourse()"
-        ></app-course-add>
+        <app-button
+          buttonText="Add course"
+          iconSrc="../../../../../assets/icon/plus.svg"
+          [buttonType]="buttonType.BLUE"
+          [buttonSize]="buttonSize"
+          (click)="onAddNewCourse()"
+        >
+        </app-button>
       </div>
     </div>
   </div>
-  <div class="container"  *ngIf="courses$| filterBy: searchValue| async as courses">
+  <div class="container courses__list"  *ngIf="courses$ | async as courses">
     <div class="row" *ngIf="courses.length; else empthyMessage">
       <app-course-item
-        *ngFor="let course of courses | orderBy; trackBy: trackById"
-        appBorder
-        [creationDate]="course.creationDate"
+        *ngFor="let course of courses; trackBy: trackById"
         [course]="course"
         (deleteCourse)="onDeleteCourse($event)"
         (editCourse)="onEditCourse($event)"
         >
     </app-course-item>
+    </div>
+    <div class="container courses__action">
+      <app-button
+      buttonText="Load More"
+      [buttonType]="buttonType.GREEN"
+      [buttonSize]="buttonSize"
+      (click)="loadMore()"
+      ></app-button>
     </div>
   </div>
   <ng-template #empthyMessage>

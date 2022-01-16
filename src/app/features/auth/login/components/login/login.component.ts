@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -7,27 +9,27 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy{
   user = {
-    email: '',
+    login: '',
     password: '',
   }
-
   isLogged!: boolean;
+  private subs!: Subscription;
 
-  constructor(private authService: AuthService, private router: Router) { }
-
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSignIn(): void {
-    this.authService.signIn(this.user);
-    this.isLogged = this.authService.logger$$.getValue();
-    console.log(this.isLogged)
-    if(this.isLogged) {
-      const redirect = this.authService.redirectUrl
-            ? this.authService.redirectUrl
-            : '/courses';
-          this.router.navigate([redirect]);
-    }
+    this.subs = this.authService.signIn(this.user).subscribe(() => {
+      this.isLogged = this.authService.logger$$.getValue();
+      if(this.isLogged) {
+        this.router.navigate(['/courses']);
+      };
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }
 
