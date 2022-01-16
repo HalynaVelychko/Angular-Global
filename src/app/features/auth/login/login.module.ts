@@ -22,8 +22,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     LoginComponent,
     IfAuthenticatedDirective,
   ],
-  // providers: [
-  //   { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-  // ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
 })
 export class LoginModule { }

@@ -1,16 +1,18 @@
 <form action="" class="d-flex align-items-center">
   <div class="input-group">
     <input
-      [(ngModel)]="inputData"
+      #searchInput
       name="search"
       type="text"
       class="form-control form__actions"
       placeholder="Text to search"
-      aria-label="Username">
+      aria-label="Username"
+      (keyup)="searchValue(searchInput.value)"
+      >
   </div>
   <div class="ps-2">
     <app-button
-      (click)="onSubmit()"
+      (click)="searchValue(searchInput.value)"
       [buttonType]="buttonType"
       [buttonSize]="buttonSize"
       buttonText="Submit"
