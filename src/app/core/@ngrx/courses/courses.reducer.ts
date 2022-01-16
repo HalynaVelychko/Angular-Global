@@ -9,16 +9,52 @@ export const coursesFeatureKey = 'courses';
 export const reducer = createReducer(
   initialState,
   on(CoursesActions.getCourses, state => {
-    console.log('GET_Courses action being handled!');
     return { ...state, isLoading: true }
   }),
   on(CoursesActions.getCoursesSuccess, (state, { courses }) => {
-    console.log('GET_Courses_SUCCESS action being handled!');
-    // const data = [...courses ];
     return { ...state, courses, isLoading: false }
   }),
-  on(CoursesActions.getCoursesFail, (state, { error }) => {
-    return { ...state, loading: false, error }
+  on(CoursesActions.getCoursesFail, (state, { error })  => {
+    return { ...state, isLoading: false, error}
+  }),
+
+  on(CoursesActions.loadMoreCourses, state => {
+    return { ...state, isLoading: true }
+  }),
+  on(CoursesActions.loadMoreCoursesSuccess, (state, { courses }) => {
+    return { ...state, courses, isLoading: false }
+  }),
+  on(CoursesActions.loadMoreCoursesFail, state => {
+    return { ...state, isLoading: false }
+  }),
+
+  on(CoursesActions.getCourse, state => {
+    return { ...state, isLoading: true }
+  }),
+  on(CoursesActions.getCourseSuccess, (state, { course}) => {
+    return {
+      ...state,
+      course: course,
+      isLoading: false,
+    }
+  }),
+  on(CoursesActions.getCourseFail, (state, { error }) => {
+    return {
+      ...state,
+      isLoading: false,
+      error,
+    }
+  }),
+
+  on(CoursesActions.editCourse, (state) => {
+    return { ...state, isLoading: true}
+  }),
+  on(CoursesActions.editCourseSuccess, (state, { course }) => {
+    return {
+      ...state,
+      course,
+      isLoading: false,
+    }
   }),
 );
 

@@ -1,6 +1,6 @@
-<div class="row shadow-lg p-4 bg-white add-course-wrapper">
+<div class="row shadow-lg p-4 bg-white add-course-wrapper" *ngIf="course">
   <h2 class="mb-4">Course Form</h2>
-  <form *ngIf="course" (ngSubmit)="onSave()" #form="ngForm">
+  <form  (ngSubmit)="onSave(course.id, course)" #form="ngForm">
     <div class="gx-0">
       <label for="name"><b>Title:</b></label>
       <input

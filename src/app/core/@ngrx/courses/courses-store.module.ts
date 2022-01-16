@@ -13,6 +13,6 @@ import { CoursesEffects } from './courses.effects';
     CommonModule,
     StoreModule.forFeature(coursesFeatureKey, coursesReducer),
     EffectsModule.forFeature([CoursesEffects]),
-  ]
+  ],
 })
 export class CoursesStoreModule { }

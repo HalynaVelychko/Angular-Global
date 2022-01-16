@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import { ButtonSize, ButtonType } from '@shared';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AppState, selectCoursesData } from 'src/app/core/@ngrx';
 import { CoursesService } from '../../services/courses.service';
@@ -23,7 +23,8 @@ import * as CoursesActions from '../../../../core/@ngrx/courses/courses.actions'
 export class CoursesListComponent implements OnInit {
   buttonType = ButtonType;
   buttonSize = ButtonSize.LARGE;
-  courses$!: Observable<ReadonlyArray<CourseModel>>;
+  courses$$ = new BehaviorSubject<CourseModel[]>([]);
+  courses$ = this.courses$$.asObservable();
   searchValue!: string;
   url:any
 
@@ -39,12 +40,12 @@ export class CoursesListComponent implements OnInit {
   }
 
   getCourses(): void {
-    this.courses$ = this.store.pipe(select(selectCoursesData))
+   this.store.select((selectCoursesData)).subscribe(course => this.courses$$.next(course));
   }
 
   onSearchData(searchQuery: string): void {
-    // this.coursesService.searchCourse(searchQuery)
-    //   .subscribe((courses) => this.courses$$.next(courses));
+    this.coursesService.searchCourse(searchQuery)
+      .subscribe((courses) => this.courses$$.next(courses));
   }
 
   trackById(_index: number, course: CourseModel): number {
@@ -71,8 +72,7 @@ export class CoursesListComponent implements OnInit {
   }
 
   loadMore(): void {
-    // this.coursesService.loadMore().subscribe(courses => {
-    //   this.courses$$.next(courses);
-    // })
+    this.store.dispatch(CoursesActions.loadMoreCourses());
+    this.getCourses();
   }
 }
