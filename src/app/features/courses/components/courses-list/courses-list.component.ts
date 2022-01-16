@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { ButtonSize, ButtonType } from '@shared';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { AppState, selectCoursesData } from 'src/app/core/@ngrx';
 import { CoursesService } from '../../services/courses.service';
 import { FilterPipe } from './../../../../shared/pipes/filter.pipe';
 
 //Models
 import { CourseModel } from './../../models/course.model';
+
+//Store
+import * as CoursesActions from '../../../../core/@ngrx/courses/courses.actions';
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
@@ -26,16 +31,16 @@ export class CoursesListComponent implements OnInit {
   constructor(
     private router: Router,
     private coursesService: CoursesService,
+    private store: Store<AppState>,
     ) { }
 
   ngOnInit(): void {
     this.getCourses();
+    this.store.dispatch(CoursesActions.getCourses())
   }
 
   getCourses(): void {
-    this.coursesService.getCourses().subscribe((courses) => {
-      this.courses$$.next(courses);
-    });
+   this.store.select((selectCoursesData)).subscribe(course => this.courses$$.next(course));
   }
 
   onSearchData(searchQuery: string): void {
@@ -67,8 +72,7 @@ export class CoursesListComponent implements OnInit {
   }
 
   loadMore(): void {
-    this.coursesService.loadMore().subscribe(courses => {
-      this.courses$$.next(courses);
-    })
+    this.store.dispatch(CoursesActions.loadMoreCourses());
+    this.getCourses();
   }
 }

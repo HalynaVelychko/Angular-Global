@@ -16,7 +16,8 @@
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:ngrx/recommended"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -35,9 +36,15 @@
             "style": "kebab-case"
           }
         ],
-        "curly": ["error", "all"],
+        "curly": [
+          "error",
+          "all"
+        ],
         "class-methods-use-this": "off",
-        "comma-dangle": ["error", "always-multiline"],
+        "comma-dangle": [
+          "error",
+          "always-multiline"
+        ],
         "no-underscore-dangle": "off",
         "no-plusplus": [
           "error",
@@ -64,7 +71,10 @@
             "argsIgnorePattern": "^_"
           }
         ]
-      }
+      },
+      "plugins": [
+        "ngrx"
+      ]
     },
     {
       "files": [
