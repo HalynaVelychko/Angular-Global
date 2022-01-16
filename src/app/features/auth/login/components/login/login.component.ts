@@ -1,6 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/core/@ngrx';
+import * as AuthActions from '../../../../../core/@ngrx/auth/auth.actions';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -9,27 +11,17 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnDestroy{
+export class LoginComponent {
   user = {
     login: '',
     password: '',
   }
   isLogged!: boolean;
-  private subs!: Subscription;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private store: Store<AppState>) {}
 
   onSignIn(): void {
-    this.subs = this.authService.signIn(this.user).subscribe(() => {
-      this.isLogged = this.authService.logger$$.getValue();
-      if(this.isLogged) {
-        this.router.navigate(['/courses']);
-      };
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    this.store.dispatch(AuthActions.setToken({ login: this.user.login, password: this.user.password }))
   }
 }
 
