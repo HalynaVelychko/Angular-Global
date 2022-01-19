@@ -1,0 +1,22 @@
+{
+  "HEADER": {
+    "title": "VIDEO COURSE",
+    "login": "Login",
+    "signOut": "Logout",
+    "greating": "Hello"
+  },
+  "COURSES": {
+    "loadMore": "Load more...",
+    "addCourse": "Add Course",
+    "search": "Search",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteAskSure": "Are you sure want to delete course??",
+    "deleteAsk": "Delete course?",
+    "cancel": "Cancel",
+    "yes": "Yes!",
+    "course": "course",
+    "addNewCourse": "Add new course",
+    "emptyCourseList": "No data, feel free to add new course"
+  }
+}
