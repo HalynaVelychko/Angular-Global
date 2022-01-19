@@ -1,0 +1,10 @@
+<label [for]="id"><b>{{ labelText }}</b></label>
+<input
+  [id]="id"
+  [type]="type"
+  [placeholder]="placeholder"
+  [mask]="mask"
+  [(ngModel)]="value"
+  (blur)="onBlur()"
+  class="app-input"
+>
