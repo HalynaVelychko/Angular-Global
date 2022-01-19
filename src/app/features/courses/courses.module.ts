@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoursesRoutingModule } from './courses-routing.module';
 import { CoreModule } from './../../core/core.module';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '@shared';
 
@@ -20,6 +20,7 @@ import { CoursesListComponent, CourseItemComponent, CoursesSerachComponent, Cour
     HttpClientModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
     CoreModule,
     CoursesRoutingModule,
   ],

@@ -26,7 +26,7 @@ export class CoursesService {
    return  this.http.get<CourseModel>(`${apiUrl}${COURSES_API}/${id}`);
   }
 
-  updateCourse(id: number, course: CourseModel): Observable<CourseModel> {
+  updateCourse(id: number, course: CourseModel | null): Observable<CourseModel> {
     return this.http.patch<CourseModel>(`${apiUrl}${COURSES_API}/${id}`, course)
   }
 

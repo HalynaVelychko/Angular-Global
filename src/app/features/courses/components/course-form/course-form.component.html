@@ -1,46 +1,59 @@
 <div class="row shadow-lg p-4 bg-white add-course-wrapper">
   <h2 class="mb-4">Course Form</h2>
-  <form *ngIf="course" (ngSubmit)="onSave()" #form="ngForm">
+  <form  (ngSubmit)="onSave($event)" [formGroup]="courseForm">
     <div class="gx-0">
-      <label for="name"><b>Title:</b></label>
-      <input
-        id="name"
-        type="text"
-        placeholder="Text input"
-        name="name"
-        required
-        [(ngModel)]="course.name"
-      >
-      <label for="description"><b>Description:</b></label>
+      <app-input
+        [formControl]="title"
+        [type]="inputTypes.text"
+        [placeholder]="CoursePlaceholder.TITLE"
+        [id]="CoursePlaceholder.TITLE"
+        [labelText]="CoursePlaceholder.TITLE"
+        [required]="true"
+        [minLength]="3"
+        [maxLength]="50"
+      ></app-input>
+      <div class="error-message" *ngIf="!title.pristine && title.errors && title.errors.required">
+          <span>Please, fill this field</span>
+      </div>
+      <div class="error-message" *ngIf="!title.pristine && title.errors && title.errors.pattern.requiredPattern">
+        <span>Only characters allowed. a-zA-Z</span>
+    </div>
+      <label [for]="CoursePlaceholder.DESCRIPTION">
+        <b>{{ CoursePlaceholder.DESCRIPTION }}</b>
+      </label>
       <textarea
-        id="description"
+        [id]="CoursePlaceholder.DESCRIPTION"
+        [formControl]="description"
         type="text" rows="5"
-        placeholder="Add description"
-        name="description"
+        [placeholder]="CoursePlaceholder.DESCRIPTION"
         required
-        [(ngModel)]="course.description"
       ></textarea>
-      <label for="duration"><b>Duration:</b></label>
-      <input
-        id="duration"
-        type="number"
+      <div *ngIf="!description.pristine && description.errors && description.errors.required">
+          <span class="text-danger">This field is required</span>
+      </div>
+      <div *ngIf="description.errors && description.errors.maxlength">
+          <span class="text-danger">The maximum length is {{description.errors.maxlength.requiredLength}}</span>
+      </div>
+      <app-input
+        [formControl]="duration"
+        [type]="inputTypes.number"
         placeholder="minutes"
-        name="duration"
-        required
-        [(ngModel)]="course.length"
-      >
-      <label for="date"><b>Creation date:</b></label>
-      <input
-        id="date"
-        type="date"
+        [id]="CoursePlaceholder.DURATION"
+        [labelText]="CoursePlaceholder.DURATION"
+        [required]="true"
+     ></app-input>
+      <app-input
+        [formControl]="date"
+        [type]="inputTypes.date"
         placeholder=""
-        name="date"
-        [(ngModel)]="course.date"
-      >
+        [id]="CoursePlaceholder.DATE"
+        [labelText]="CoursePlaceholder.DATE"
+        [required]="true"
+     ></app-input>
     </div>
     <div class="save-btn-container mt-3">
       <button class="cancel-btn" type="button" (click)="onCancel()">Cancel</button>
-      <button class="save-btn" type="submit" [disabled]="form.invalid">Save</button>
+      <button class="save-btn" type="submit" [disabled]="!courseForm.valid">Save</button>
     </div>
   </form>
 </div>
