@@ -1,7 +1,7 @@
 <div class="container shadow p-3 my-1 bg-body rounded course-item">
   <div class="row justify-content-between align-items-baseline mx-4">
     <div class="col-md-4">
-      <h2>{{ course.name | uppercase }}
+      <h2>{{ course.name | uppercase }}{{ 'COURSES.course' | translate}}
         <span><i [ngClass]="{ isStarNotShown: !course.isTopRated}" [ngStyle]="{ 'color': 'gold'}"  class="bi bi-star-fill"></i></span>
       </h2>
     </div>
@@ -23,7 +23,7 @@
     <div class="col-md-2 d-flex">
       <div class="col-md-6">
         <app-button
-          buttonText="Edit"
+          [buttonText]="'COURSES.edit' | translate"
           iconSrc="../../../../../assets/icon/pencil.svg"
           [buttonType]="buttonType"
           [buttonSize]="buttonSize"
@@ -32,7 +32,7 @@
       </div>
       <div class="col-md-6 ms-3">
         <app-button
-          buttonText="Delete"
+          [buttonText]="'COURSES.delete' | translate"
           iconSrc="../../../../../assets/icon/trash.svg"
           [buttonType]="buttonType"
           [buttonSize]="buttonSize"

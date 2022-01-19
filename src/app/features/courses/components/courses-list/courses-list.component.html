@@ -9,7 +9,7 @@
       </div>
       <div class="col-md-2">
         <app-button
-          buttonText="Add course"
+          [buttonText]="'COURSES.addCourse' | translate"
           iconSrc="../../../../../assets/icon/plus.svg"
           [buttonType]="buttonType.BLUE"
           [buttonSize]="buttonSize"
@@ -31,7 +31,7 @@
     </div>
     <div class="container courses__action">
       <app-button
-      buttonText="Load More"
+      [buttonText]="'COURSES.loadMore' | translate"
       [buttonType]="buttonType.GREEN"
       [buttonSize]="buttonSize"
       (click)="loadMore()"
@@ -41,8 +41,9 @@
   <ng-template #empthyMessage>
     <div class="container d-flex justify-content-center">
       <div class="col-md-10 courses__empty-block">
-        <p>No data, feel free to add new course</p>
+        <p>{{ 'COURSES.emptyCourseList' | translate }}</p>
       </div>
     </div>
   </ng-template>
 </main>
+
